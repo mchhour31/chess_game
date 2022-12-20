@@ -7,6 +7,12 @@ class Chess:
         self.root.geometry("1000x840")
         self.canvas = Canvas(self.root)
         
+        self.img = self.loadImages()
+        self.generateGrid()
+        self.generateWhite()
+        self.generateBlack()
+        
+        
         self.canvas.pack()
         self.root.mainloop()
         
@@ -58,19 +64,19 @@ class Chess:
     def generateWhite(self):
         for i in range(1):
             for j in range(8):
-                btn = Button(self.canvas, image=self.loadImages()[j], anchor='center', bg=self.color(i, j))
+                btn = Button(self.canvas, image=self.img[j], anchor='center', bg=self.color(i, j))
                 self.root.bind('<Button-1>')
                 btn.grid(row=i, column=j, sticky=N+S+E+W)
 
         for i in range(1, 2):
             for j in range(8):
-                btn = Button(self.canvas, image=self.loadImages()[-1], anchor='center', bg=self.color(i, j))
+                btn = Button(self.canvas, image=self.img[-1], anchor='center', bg=self.color(i, j))
                 self.root.bind('<Button-1>')
                 btn.grid(row=i, column=j, sticky=N+S+E+W)
     
     ## black pieces
     def generateBlack(self):
-        img_copy = self.loadImages().copy()
+        img_copy = self.img.copy()
         img_copy[3], img_copy[4] = img_copy[4], img_copy[3] # swapping king, queen for black side
         
         for i in range(7,8):
@@ -86,43 +92,3 @@ class Chess:
                 btn.grid(row=i, column=j, sticky=N+S+E+W)
 
 chess = Chess()
-chess.generateGrid()
-
-
-    
-# generateWhite()
-# generateBlack()
-
-
-
-
-
-
-
-# # class Test():
-# #     def __init__(self):
-# #         self.root = Tk()
-# #         self.root.geometry("250x100")
-# #         self.button_border = Frame(self.root, highlightbackground='black',
-# #                               highlightthickness=2, bd=0)
-# #         self.buttonA = Button(self.button_border,
-# #                                  text = "Color",
-# #                                  bg = "blue",
-# #                                  fg = "red")
-
-# #         self.buttonB = Button(self.button_border,
-# #                                 text="Click to change color",
-# #                                 command=self.changeColor)
-# #         self.buttonA.pack(side=LEFT)
-# #         self.button_border.pack()
-# #         self.buttonB.pack(side=RIGHT)
-# #         self.root.mainloop()
-
-# #     def changeColor(self):
-# #         if self.buttonA["bg"] == 'gray':
-# #            self.button_border['highlightbackground'] = 'red'
-        
-# #         self.buttonA["bg"]="gray"
-# #         # self.buttonA["fg"]="cyan"   
-
-# # app=Test()
